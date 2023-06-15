@@ -18,8 +18,11 @@ public class WishManager : MonoBehaviour
     private float hitDistance;
     private Transform initCardTransform;
     private Vector3 beforeChosenPosition;
+    private Vector3 beforeChosenRotation;
 
-    private bool shouldRotate = true;
+    private GameObject chosenCardHole;
+
+    private bool isChoosing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +55,7 @@ public class WishManager : MonoBehaviour
 
     void CheckRotate()
     {
-        if (wishCardList == null || !shouldRotate) return;
+        if (wishCardList == null || isChoosing) return;
         if (Input.GetMouseButton(0))
         {
             if (
@@ -79,7 +82,7 @@ public class WishManager : MonoBehaviour
     void CheckPickCard()
     {
         if (wishCardList == null) return;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isChoosing)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
@@ -88,12 +91,16 @@ public class WishManager : MonoBehaviour
             {
                 Debug.Log("Hit card:");
                 Debug.Log(hit.collider.gameObject.name);
-                shouldRotate = false;
+                isChoosing = true;
                 chosenCard = hit.collider.gameObject;
                 hitDistance = hit.distance;
                 beforeChosenPosition = hit.collider.gameObject.transform.position;
+                beforeChosenRotation = hit.collider.gameObject.transform.rotation.eulerAngles;
+
                 chosenCard.transform.DOScaleX(chosenCard.transform.localScale.x * 1.5f, 1.0f);
                 chosenCard.transform.DOScaleY(chosenCard.transform.localScale.y * 1.5f, 1.0f);
+                chosenCard.transform.DORotate(new Vector3(0, 0, 0), 1.0f);
+
             }
         }
         if (Input.GetMouseButton(0) && chosenCard != null)
@@ -109,8 +116,9 @@ public class WishManager : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0) && chosenCard != null)
         {
-            chosenCard.transform.DOScale(initCardTransform.localScale, 1.0f);
-            chosenCard.transform.DOMove(beforeChosenPosition, 1.0f).OnComplete(delegate { shouldRotate = true; });
+            chosenCard.transform.DOScale(initCardTransform.localScale, 0.5f);
+            chosenCard.transform.DORotate(beforeChosenRotation, 0.5f);
+            chosenCard.transform.DOMove(beforeChosenPosition, 0.7f).OnComplete(delegate { isChoosing = false; });
             chosenCard = null;
             hitDistance = -1;
             beforeChosenPosition = new Vector3(0.0f, 0.0f, 0.0f);
