@@ -47,6 +47,13 @@ public class ScrollViewScript : MonoBehaviour, IBeginDragHandler, IEndDragHandle
             posArray[i] = (float)i / (totalCount-1);
         }
         posArray[totalCount - 1] = 1.0f;
+
+        var playerList = GetComponentsInChildren<BookAudioPlayer>();
+        foreach (var player in playerList)
+        {
+            player.playButton.onClick.AddListener(FreezeScrolling);
+            player.pauseButton.onClick.AddListener(UnfreezeScrolling);
+        }
     }
 
     // Update is called once per frame
@@ -56,5 +63,15 @@ public class ScrollViewScript : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         {
             rect.horizontalNormalizedPosition = Mathf.Lerp(rect.horizontalNormalizedPosition, targetPos, Time.deltaTime * 4);
         }
+    }
+
+    public void FreezeScrolling()
+    {
+        GetComponent<ScrollRect>().horizontal = false;
+    }
+
+    public void UnfreezeScrolling()
+    {
+        GetComponent<ScrollRect>().horizontal = true;
     }
 }
