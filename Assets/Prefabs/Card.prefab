@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 7032667760585817962}
   - component: {fileID: 8054774046214117060}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Question_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1010,6 +1010,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardFront: {fileID: 6242762513649052531}
   CardReturnButton: {fileID: 1061552508862866161}
+  CardQuestionButton: {fileID: 8054774046214117060}
+  CardFrontText: {fileID: 6998198633307866629}
 --- !u!1 &6242762513649052531
 GameObject:
   m_ObjectHideFlags: 0

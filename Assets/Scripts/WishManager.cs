@@ -10,6 +10,7 @@ public class WishManager : MonoBehaviour
     public Transform rotateCenter;
     public Transform initPosition;
     public GameObject wishGroup;
+    public GameObject questionBoard;
 
     public float rotateSpeed = 1000.0f;
     public bool hasWish = false;
@@ -54,8 +55,14 @@ public class WishManager : MonoBehaviour
             float t = (float)(i - totalWishCount / 2) / totalWishCount;
             obj.transform.RotateAround(rotateCenter.position, new Vector3(0.0f, 0.0f, 1.0f), t * totalWishCount * 13.5f);
             obj.GetComponent<WishCard>().CardReturnButton.onClick.AddListener(HideCard);
-            
+            obj.GetComponent<WishCard>().CardQuestionButton.onClick.AddListener(delegate 
+            { 
+                questionBoard.SetActive(true);
+                questionBoard.GetComponent<QuestionBoard>().chosenCard = obj;
+                obj.GetComponent<WishCard>().CardFront.SetActive(false); 
+            });
             wishCardList.Add(obj);
+
 
         }
         hasWish = true;
