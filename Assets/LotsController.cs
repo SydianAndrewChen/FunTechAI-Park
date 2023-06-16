@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LotsController : MonoBehaviour
 {
-    public ScrollRect rect;
+    private ScrollRect rect;
     private bool isDropping;
     // Start is called before the first frame update
     void Start()

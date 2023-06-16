@@ -9,8 +9,11 @@ public class WishManager : MonoBehaviour
     public GameObject wishCard;
     public Transform rotateCenter;
     public Transform initPosition;
+    public GameObject wishGroup;
 
     public float rotateSpeed = 1000.0f;
+    public bool hasWish = false;
+
     private float radius = 14.0f;
     private List<GameObject> wishCardList;
 
@@ -20,7 +23,7 @@ public class WishManager : MonoBehaviour
     private Vector3 beforeChosenPosition;
     private Vector3 beforeChosenRotation;
 
-    private GameObject chosenCardHole;
+    public GameObject chosenCardHole;
 
     private bool isChoosing = false;
 
@@ -41,16 +44,21 @@ public class WishManager : MonoBehaviour
 
     public void ShowCard() 
     {
+        if (hasWish) return;
         wishCardList = new List<GameObject>();
         for (int i = 0; i < totalWishCount; ++i)
         {
-            GameObject obj = Instantiate(wishCard);
+            GameObject obj = Instantiate(wishCard, wishGroup.transform);
             obj.name = string.Format("Card {0}", i);
             obj.transform.position = initPosition.position;
             float t = (float)(i - totalWishCount / 2) / totalWishCount;
             obj.transform.RotateAround(rotateCenter.position, new Vector3(0.0f, 0.0f, 1.0f), t * totalWishCount * 13.5f);
+            obj.GetComponent<WishCard>().CardReturnButton.onClick.AddListener(HideCard);
+            
             wishCardList.Add(obj);
+
         }
+        hasWish = true;
     }
 
     void CheckRotate()
@@ -97,32 +105,52 @@ public class WishManager : MonoBehaviour
                 beforeChosenPosition = hit.collider.gameObject.transform.position;
                 beforeChosenRotation = hit.collider.gameObject.transform.rotation.eulerAngles;
 
-                chosenCard.transform.DOScaleX(chosenCard.transform.localScale.x * 1.5f, 1.0f);
-                chosenCard.transform.DOScaleY(chosenCard.transform.localScale.y * 1.5f, 1.0f);
+                chosenCard.transform.DOScale(chosenCard.transform.localScale * 1.5f, 0.1f);
                 chosenCard.transform.DORotate(new Vector3(0, 0, 0), 1.0f);
 
             }
         }
         if (Input.GetMouseButton(0) && chosenCard != null)
         {
-            Debug.Log("Choosing");
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             
-            Vector3 mouseWorldPosition = ray.GetPoint(hitDistance); ;
-            Debug.Log(Input.mousePosition);
-            Debug.Log(mouseWorldPosition);
+            Vector3 mouseWorldPosition = ray.GetPoint(hitDistance);
             chosenCard.transform.position = new Vector3(mouseWorldPosition.x, mouseWorldPosition.y, chosenCard.transform.position.z);
         }
 
             if (Input.GetMouseButtonUp(0) && chosenCard != null)
         {
-            chosenCard.transform.DOScale(initCardTransform.localScale, 0.5f);
-            chosenCard.transform.DORotate(beforeChosenRotation, 0.5f);
-            chosenCard.transform.DOMove(beforeChosenPosition, 0.7f).OnComplete(delegate { isChoosing = false; });
-            chosenCard = null;
-            hitDistance = -1;
-            beforeChosenPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            if (Vector3.Distance(chosenCard.transform.position, chosenCardHole.transform.position) < 30.0f)
+            {
+                chosenCard.transform.DORotate(chosenCardHole.transform.rotation.eulerAngles, 0.5f);
+                chosenCard.transform.DOScale(chosenCardHole.transform.localScale, 0.5f);
+                chosenCard.transform.DOMove(chosenCardHole.transform.position, 0.7f).OnComplete(delegate {
+                    chosenCard.transform.DOScaleY(chosenCard.transform.localScale.y * -1, 1.0f);
+                    chosenCard.transform.DOScaleZ(chosenCard.transform.localScale.z * -1, 1.0f).OnComplete(delegate {
+                        chosenCard.transform.DOScale(chosenCard.transform.localScale * 3.0f, 1.0f);
+                        chosenCard.transform.DOMoveX(0, 1.0f);
+                        chosenCard.transform.DOMoveY(0, 1.0f);
+                        chosenCard.GetComponent<WishCard>().CardFront.SetActive(true);
+                        chosenCard = null;
+                    });
+                });
+
+            }
+            else
+            {
+                chosenCard.transform.DOScale(initCardTransform.localScale, 0.5f);
+                chosenCard.transform.DORotate(beforeChosenRotation, 0.5f);
+                chosenCard.transform.DOMove(beforeChosenPosition, 0.7f).OnComplete(delegate { isChoosing = false; });
+                chosenCard = null;
+                hitDistance = -1;
+                beforeChosenPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            }
         }
 
+    }
+
+    public void HideCard()
+    {
+        wishGroup.SetActive(false);
     }
 }
