@@ -36,7 +36,7 @@ public class TestNetRequest : MonoBehaviour
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        request.SetRequestHeader("Authorization", "Bearer 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");
+        request.SetRequestHeader("Authorization", "Bearer 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");
         yield return request.SendWebRequest();
         Debug.Log("Status Code: " + request.responseCode);
         Debug.Log(request.downloadHandler.text);

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 public class WishManager : MonoBehaviour
 {
@@ -28,12 +30,17 @@ public class WishManager : MonoBehaviour
 
     private bool isChoosing = false;
 
+    private JArray cards;
     // Start is called before the first frame update
     void Start()
     {
         chosenCard = null;
         hitDistance = -1;
         initCardTransform = wishCard.transform;
+
+        JObject obj = JObject.Parse(ReadData("Tarots"));
+        cards = (JArray)obj["cards"];
+        Debug.Log(ReadData("Tarots"));
     }
 
     // Update is called once per frame
@@ -41,6 +48,23 @@ public class WishManager : MonoBehaviour
     {
         CheckRotate();
         CheckPickCard();
+    }
+
+    public string ReadData(string fileName)
+    {
+        //string类型的数据常量
+        string readData;
+        //获取到路径
+        string fileUrl = Application.streamingAssetsPath + "\\" + fileName + ".json";
+        //读取文件
+        using (StreamReader sr = File.OpenText(fileUrl))
+        {
+            //数据保存
+            readData = sr.ReadToEnd();
+            sr.Close();
+        }
+        //返回数据
+        return readData;
     }
 
     public void ShowCard() 
@@ -61,6 +85,11 @@ public class WishManager : MonoBehaviour
                 questionBoard.GetComponent<QuestionBoard>().chosenCard = obj;
                 obj.GetComponent<WishCard>().CardFront.SetActive(false); 
             });
+            var card = cards[i];
+            obj.GetComponent<WishCard>().CardFrontText.SetText(
+                "Main Representation:\n" + card["main_representations"] +
+                "Advice:\n" + card["advice"] +
+                "Description:\n" + card["description"]);
             wishCardList.Add(obj);
 
 

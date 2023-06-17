@@ -12,6 +12,11 @@ public class WishCard : MonoBehaviour
     public Button CardQuestionButton;
     public TMP_Text CardFrontText;
 
+    public string name;
+    public string description;
+    public string main_representation;
+    public string advice;
+
     // Start is called before the first frame update
     void Start()
     {

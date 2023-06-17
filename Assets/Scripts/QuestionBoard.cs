@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,15 +37,41 @@ public class QuestionBoard : MonoBehaviour
     {
         /* Some questions to send*/
 
+
         /* Wait for a sec and play animation */
 
         /* Get something back from backend */
 
+        StartCoroutine(SendQuestionRequest());
+    }
+
+
+    ChatGPTRequestStruct GenerateMessages(WishCard card)
+    {
+        var s = new ChatGPTRequestStruct();
+        string q1 = string.Format("Answer the input question with regard to the following Tarot card:\n {0}", card.CardFrontText.text);
+        string q2 = InputQuestions.text;
+        s.messages = new ChatGPTMessageStruct[2]
+        {
+            new ChatGPTMessageStruct("system", q1),
+            new ChatGPTMessageStruct("user", q2)
+        };
+        return s;
+    }
+
+    IEnumerator SendQuestionRequest()
+    {
+
         string answer = "Test answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\nTest answer!\n";
 
-        chosenCard.GetComponent<WishCard>().CardFrontText.text = answer;
+        ChatGPTRequest r = new ChatGPTRequest();
+        
+        ChatGPTRequestStruct rs = GenerateMessages(chosenCard.GetComponent<WishCard>());
+        string jsonString = JsonUtility.ToJson(rs);
+        Debug.Log(jsonString);
+        yield return r.Post(jsonString);
+        chosenCard.GetComponent<WishCard>().CardFrontText.SetText(r.response);
         gameObject.SetActive(false);
         chosenCard.GetComponent<WishCard>().CardFront.SetActive(true);
-
     }
 }
