@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AMADatePicker;
+
 public class LotsManager : MonoBehaviour
 {
 
@@ -9,7 +10,11 @@ public class LotsManager : MonoBehaviour
     public GameObject firstTimeGroup;
     public GameObject afterFirstTimeGroup;
     public GameObject datePicker;
+    public GameObject waitAnime;
+    public GameObject lotsController;
     private ADP m_ADP;
+
+    private bool isDrawing;
 
     private int day;
     private int month;
@@ -36,10 +41,13 @@ public class LotsManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (isDrawing)
+        {
+            waitAnime.transform.RotateAround(waitAnime.transform.position, new Vector3(0.0f, 0.0f, 1.0f), 50.0f * Time.deltaTime);
+
+        }
     }
 
     public void SetupDate()
@@ -61,5 +69,19 @@ public class LotsManager : MonoBehaviour
         hasSetupDate = false;
     }
 
-    
+    public void DrawLotRequest()
+    {
+        StartCoroutine(TestCoroutine());
+
+    }
+
+    IEnumerator TestCoroutine()
+    {
+        isDrawing = true;
+        yield return new WaitForSeconds(2.0f);
+        waitAnime.SetActive(false);
+        isDrawing = false;
+        lotsController.GetComponent<LotsController>().DrawLots();
+        Debug.Log("Finished");
+    }
 }
