@@ -1,0 +1,64 @@
+{
+  "cards": [
+    {
+      "name": "The Fool",
+      "description": "The Fool is depicted as a young man standing at the edge of a cliff, about to step into the unknown. He is carefree, with a small bag on his shoulder and a white rose in his hand. This card represents new beginnings, taking risks, and embracing the journey ahead. It advises you to trust your instincts and have faith in the universe.",
+      "main_representations": "New beginnings, spontaneity, innocence, trust, taking a leap of faith.",
+      "advice": "Embrace new opportunities and be open to unexpected possibilities."
+    },
+    {
+      "name": "The Magician",
+      "description": "The Magician stands with one hand pointing upwards and the other pointing downwards, symbolizing his connection between the spiritual and physical realms. He has the tools of the four elements on his table, representing the power to manifest desires. This card represents manifestation, creativity, and personal power. It advises you to harness your talents and take action.",
+      "main_representations": "Manifestation, personal power, creativity, action, resourcefulness.",
+      "advice": "Tap into your inner potential and use your skills to create the life you desire."
+    },
+    {
+      "name": "The High Priestess",
+      "description": "The High Priestess is a serene figure sitting between two pillars, representing the duality of life. She holds a scroll of ancient knowledge and wears a crescent moon crown. This card represents intuition, wisdom, and the subconscious mind. It advises you to listen to your inner voice and trust your instincts.",
+      "main_representations": "Intuition, mystery, hidden knowledge, inner wisdom, spiritual insight.",
+      "advice": "Pay attention to your intuition and trust the guidance it provides."
+    },
+    {
+      "name": "The Empress",
+      "description": "The Empress is a nurturing figure surrounded by lush nature. She represents fertility, abundance, and creativity. She is depicted as a pregnant woman, symbolizing the birth of new ideas and possibilities. This card advises you to embrace your nurturing side and create a harmonious environment.",
+      "main_representations": "Fertility, abundance, creativity, nurturing, motherhood.",
+      "advice": "Tap into your creative energy and create a nurturing space for growth."
+    },
+    {
+      "name": "The Emperor",
+      "description": "The Emperor is a powerful figure seated on a throne, symbolizing authority and stability. He represents structure, leadership, and control. He holds a scepter and wears a crown, signifying his dominion over his realm. This card advises you to take charge of your life and establish a solid foundation.",
+      "main_representations": "Authority, leadership, structure, stability, control.",
+      "advice": "Take control of your life and establish a strong foundation for success."
+    },
+    {
+      "name": "The Lovers",
+      "description": "The Lovers card depicts a man and a woman standing beneath an angel, representing divine guidance. They are surrounded by lush nature, symbolizing harmony and connection. This card represents love, relationships, and choices. It advises you to follow your heart and make decisions based on love and harmony.",
+      "main_representations": "Love, relationships, harmony, choices, soulmates.",
+      "advice": "Listen to your heart and make choices that align with love and harmony."
+    },
+    {
+      "name": "The Chariot",
+      "description": "The Chariot shows a figure riding a chariot pulled by two sphinxes, representing the opposing forces within us. The figure holds a wand, symbolizing willpower and determination. This card represents victory, self-control, and overcoming obstacles. It advises you to stay focused and determined to achieve your goals.",
+      "main_representations": "Victory, willpower, determination, self-control, overcoming obstacles.",
+      "advice": "Stay focused and determined to overcome any obstacles in your path."
+    },
+    {
+      "name": "The Hermit 2",
+      "description": "The Hermit is a solitary figure standing on top of a mountain, holding a lantern. He represents introspection, solitude, and inner guidance. This card advises you to take time for introspection and seek inner wisdom.",
+      "main_representations": "Introspection, solitude, inner guidance, wisdom, soul-searching.",
+      "advice": "Take time for introspection and seek inner wisdom."
+    },
+    {
+      "name": "The Hermit",
+      "description": "The Hermit is a solitary figure standing on top of a mountain, holding a lantern. He represents introspection, solitude, and inner guidance. This card advises you to take time for introspection and seek inner wisdom.",
+      "main_representations": "Introspection, solitude, inner guidance, wisdom, soul-searching.",
+      "advice": "Take time for introspection and seek inner wisdom."
+    },
+    {
+      "name": "The Wheel of Fortune",
+      "description": "The Wheel of Fortune depicts a wheel with various symbols, representing the cycles of life and destiny. It is surrounded by figures representing the four elements. This card represents change, luck, and destiny. It advises you to embrace change and trust in the natural cycles of life.",
+      "main_representations": "Change, luck, destiny, cycles, unexpected turns.",
+      "advice": "Embrace change and trust in the natural cycles of life."
+    }
+  ]
+}

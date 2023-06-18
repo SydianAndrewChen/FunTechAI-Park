@@ -96,8 +96,9 @@ public class CharacterTimelineController : MonoBehaviour
     public string characterName;
     public TMP_Text dialogueText;
 
-    public float frameTime = 2.0f;
-    private float timer = 0.0f;
+    private const float frameTime = 5.0f;
+    public LocationManager locationManager;
+    private float timer = frameTime + 0.1f;
     
     // Start is called before the first frame update
     void Start()
@@ -123,12 +124,11 @@ public class CharacterTimelineController : MonoBehaviour
 
     void ParseTimelineCSV(string filename)
     {
-        Debug.Log(filename);
         var parseResult = CSVUtils.ParseCSV(filename, 1);
         for (int index = 0; index < 15; index++)
         {
             CharacterFrame frame = new CharacterFrame();
-            frame.place = parseResult[index][2];
+            frame.place = parseResult[index][2].ToLower();
             switch (parseResult[index][3])
             {
                 case "wait dialogue":
@@ -145,22 +145,20 @@ public class CharacterTimelineController : MonoBehaviour
                     break;
             }
             frame.text = parseResult[index][4];
-            frame.target = parseResult[index][5];
+            frame.target = parseResult[index][5].ToLower();
             frames[index] = frame;
-            Debug.Log(parseResult[index][0]) ;
         }
     }
 
     IEnumerator UpdateOneVirtualFrame()
     {
         var frame = frames[time];
-        Debug.Log(time);
-        Debug.Log(frames[time].text);
         dialogueText.SetText(frames[time].text);
 
         switch (frame.characterStatus)
         {
             case CharacterStatus.move:
+                Debug.Log(frame.target);
                 CharacterMove(frame.target);
                 break;
             default:
@@ -171,10 +169,16 @@ public class CharacterTimelineController : MonoBehaviour
     }
 
 
-    void CharacterMove(string position)
+    void CharacterMove(string placeName)
     {
+        var position = locationManager.GetLocation(placeName).position;
+        if (position == null)
+        {
+            Debug.LogError(placeName);
+            return;
+        }
         // TODO
-        GetComponent<Transform>().DOMove(new Vector3(0.0f, 0.0f, 0.0f), 0.5f);
+        GetComponent<Transform>().DOMove(position, frameTime * 0.9f);
     }
 }
  

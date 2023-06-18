@@ -11,6 +11,14 @@ public class WishCard : MonoBehaviour
     public Button CardReturnButton;
     public Button CardQuestionButton;
     public TMP_Text CardFrontText;
+    public SpriteRenderer CardBackSprite;
+    public SpriteRenderer CardFrontSprite;
+
+
+    public string name;
+    public string description;
+    public string main_representation;
+    public string advice;
 
     // Start is called before the first frame update
     void Start()
