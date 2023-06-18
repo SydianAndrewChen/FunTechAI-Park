@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 4460940600014033691}
   - component: {fileID: 6363019238631168482}
   m_Layer: 0
-  m_Name: wishBackground (2)
+  m_Name: CardFrontSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 2225839175076326546}
   - component: {fileID: 433818396757760067}
   m_Layer: 0
-  m_Name: wishBackground (1)
+  m_Name: CardBackSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,7 +554,7 @@ Transform:
   m_GameObject: {fileID: 3697176544312155622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12586217, y: 0.06925333, z: 0.18380855}
+  m_LocalScale: {x: 0.12586217, y: -0.06925333, z: 0.18380855}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6186099220584831239}
@@ -601,7 +601,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 32bacf7b6647d4442ba3d21413f23326, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e7e036fc2659f334abe6949ba7a94460, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -785,7 +785,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 124, y: -302}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1842345001055504894
 CanvasRenderer:
@@ -815,8 +815,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 60c439b699729be4b91b51df153e4934, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1012,6 +1012,12 @@ MonoBehaviour:
   CardReturnButton: {fileID: 1061552508862866161}
   CardQuestionButton: {fileID: 8054774046214117060}
   CardFrontText: {fileID: 6998198633307866629}
+  CardBackSprite: {fileID: 433818396757760067}
+  CardFrontSprite: {fileID: 6363019238631168482}
+  name: 
+  description: 
+  main_representation: 
+  advice: 
 --- !u!1 &6242762513649052531
 GameObject:
   m_ObjectHideFlags: 0

@@ -90,6 +90,7 @@ public class WishManager : MonoBehaviour
                 "Main Representation:\n" + card["main_representations"] +
                 "Advice:\n" + card["advice"] +
                 "Description:\n" + card["description"]);
+            obj.GetComponent<WishCard>().CardBackSprite.sprite = Resources.Load(string.Format("Cards/{0}.png", card["name"])) as Sprite;
             wishCardList.Add(obj);
 
 

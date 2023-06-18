@@ -11,6 +11,9 @@ public class WishCard : MonoBehaviour
     public Button CardReturnButton;
     public Button CardQuestionButton;
     public TMP_Text CardFrontText;
+    public SpriteRenderer CardBackSprite;
+    public SpriteRenderer CardFrontSprite;
+
 
     public string name;
     public string description;
