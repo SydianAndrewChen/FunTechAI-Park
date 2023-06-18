@@ -1,0 +1,16 @@
+time,character,place,status,text
+1,Boss Lei,Library,wait dialogue,
+2,Boss Lei,Library,dialogue,"Sure, let's discuss your new features for Elysion."
+3,Boss Lei,Library,dialogue,"Hacker Wang, I have some questions regarding the monetization strategy of ElysonLand, especially in regards to in-app purchases"
+4,Boss Lei,Library,wait dialogue,
+5,Boss Lei,Library,wait dialogue,
+6,Boss Lei,Library,dialogue,What metrics or data do you have to support the improvements you've made?
+7,Boss Lei,Library,wait dialogue,
+8,Boss Lei,Library,dialogue,"Thank you for preparing the report, Hacker Wang. I appreciate your efforts in monitoring the player metrics"
+9,Boss Lei,Library,wait dialogue,
+10,Boss Lei,Library,action,Review meeting notes
+11,Boss Lei,Library,action,Review meeting notes
+12,Boss Lei,Library,action,Discuss with team
+13,Boss Lei,Library,action,Discuss with team
+14,Boss Lei,Library,action,Discuss with team
+15,Boss Lei,Library,action,Discuss with team

@@ -33,6 +33,6 @@ public class ChatGPTRequest
         Debug.Log(request.downloadHandler.text);
         response = request.downloadHandler.text;
         JObject obj = JObject.Parse(request.downloadHandler.text);
-        response = ((JArray)obj["choices"])[0]["message"];
+        response = (string)((JArray)obj["choices"])[0]["message"];
     }
 }

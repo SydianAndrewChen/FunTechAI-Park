@@ -1,0 +1,16 @@
+time,character,place,status,text,target
+1,Hacker Wang,Library,dialogue,"Hey Boss Lei, do you have a minute to chat about the new features I'm working on for Elysion?",
+2,Hacker Wang,Library,wait dialogue,,
+3,Hacker Wang,Library,wait dialogue,,
+4,Hacker Wang,Library,dialogue,I have implemented a tiered pricing system for in-app purchases,
+5,Hacker Wang,Library,dialogue,"Thank you, Boss Lei. I've taken your feedback into consideration and I've been working hard to improve ElysonLand",
+6,Hacker Wang,Library,wait dialogue,,
+7,Hacker Wang,Library,dialogue,"Boss Lei, I understand the importance of quantifiable evidence. I have been closely monitoring the player feedback and engagement metrics since implementing the changes",
+8,Hacker Wang,Library,wait dialogue,,
+9,Hacker Wang,Library,dialogue,"Thank you, Boss Lei, for your time and consideration.",
+10,Hacker Wang,Library,action,Clean up workspace,
+11,Hacker Wang,Library,action,Pack up and prepare to leave,
+12,Hacker Wang,Library,move,Commute home and wind down,Common Room
+13,Hacker Wang,Library,move,Commute home and wind down,Common Room
+14,Hacker Wang,Library,move,Commute home and wind down,Common Room
+15,Hacker Wang,Common Room,action,Review and fix code,
